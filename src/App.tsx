@@ -17,7 +17,6 @@ import DefaultLayout from './layout/DefaultLayout';
 import AllProducts from './pages/Products/AllProducts';
 import AddProduct from './pages/Products/AddProduct';
 import AuthMiddleware from './AuthMiddleware';
-import AdminRegistrationPage from './pages/Authentication/AdminSignUp';
 import AdminSignInPage from './pages/Authentication/AdminSignIn';
 import GuestMiddleware from './GuestGuardMiddleware';
 import EditProduct from './pages/Products/EditProduct';
@@ -154,7 +153,7 @@ function App() {
           element={
             <AuthMiddleware>
             <>
-              <PageTitle title="Basic Chart | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Basic Chart | Shopkart - Dashboard" />
               <Chart />
             </>
             </AuthMiddleware>
@@ -164,7 +163,7 @@ function App() {
           path="/ui/alerts"
           element={
             <>
-              <PageTitle title="Alerts | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Alerts | Shopkart - Dashboard" />
               <Alerts />
             </>
           }
@@ -173,7 +172,7 @@ function App() {
           path="/ui/buttons"
           element={
             <>
-              <PageTitle title="Buttons | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Buttons | Shopkart - Dashboard" />
               <Buttons />
             </>
           }
@@ -183,7 +182,7 @@ function App() {
           element={
             <GuestMiddleware>
             <>
-              <PageTitle title="Signin | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              <PageTitle title="Signin | Shopkart - Dashboard" />
               <AdminSignInPage />
             </>
             </GuestMiddleware>
@@ -194,7 +193,7 @@ function App() {
           element={
             <GuestMiddleware>
             <>
-              {/* <PageTitle title="Signup | TailAdmin - Tailwind CSS Admin Dashboard Template" />
+              {/* <PageTitle title="Signup | Shopkart - Dashboard" />
               <AdminRegistrationPage /> */}
               <div className='flex items-center justify-center h-screen'>
                 <p><span className='font-bold text-[64px]'>404</span> page not found!</p>
