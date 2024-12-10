@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation, useNavigate  } from 'react-router-dom';
 
 interface AdminSignInProps {
-  onSignIn: (email: string, password: string) => Promise<void>;
+  onSignIn: (email: string, password: string) => Promise<any>;
   error: string | null
 }
 
@@ -10,9 +10,9 @@ const SignIn: React.FC<AdminSignInProps> = ({ onSignIn, error }) => {
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  
-  const [success, setSuccess] = useState<string | null>(null);
+
   const [loading, setLoading] = useState<boolean>(false);
+  
 
   let navigate = useNavigate();
   const location = useLocation();
@@ -20,27 +20,22 @@ const SignIn: React.FC<AdminSignInProps> = ({ onSignIn, error }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // if (!email || !password) {
-    //   setError('All fields are required.');
-    //   return;
-    // }
+    setLoading(true);
+    const ress = await onSignIn(email, password);
+    console.log('rsss', ress)
 
-    try {
-      setLoading(true);
-      // setError(null);
-      await onSignIn(email, password)
+    if (ress.success) {
       setEmail('');
       setPassword('');
-      // navigate('/')
       const redirectTo = location.state?.from?.pathname || '/';
+      setLoading(false);
       navigate(redirectTo, { replace: true });
-
-    } catch (err: any) {
-      // setError(err.message || 'An error occurred during registration.');
-    } finally {
+    } else {
       setLoading(false);
     }
   };
+
+
 
   return (
     <>
@@ -190,8 +185,7 @@ const SignIn: React.FC<AdminSignInProps> = ({ onSignIn, error }) => {
               <h2 className="mb-9 text-2xl font-bold text-black dark:text-white sm:text-title-xl2">
                 Sign In
               </h2>
-              {error && <div className="text-red-500 mb-3">{error}</div>}
-              {success && <div className="text-green-500 mb-3">{success}</div>}
+              {error !== null && <div className="text-red-500 mb-3">{error}</div>}
 
               <form onSubmit={handleSubmit}>
                 <div className="mb-4">
@@ -202,7 +196,7 @@ const SignIn: React.FC<AdminSignInProps> = ({ onSignIn, error }) => {
                     <input
                       type="email"
                       placeholder="Enter your email"
-                      value={email}
+                      // value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-lightgreen focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-lightgreen"
                       required
@@ -236,10 +230,11 @@ const SignIn: React.FC<AdminSignInProps> = ({ onSignIn, error }) => {
                     <input
                       type="password"
                       placeholder="********"
-                      value={password}
+                      // value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       className="w-full rounded-lg border border-stroke bg-transparent py-4 pl-6 pr-10 text-black outline-none focus:border-lightgreen focus-visible:shadow-none dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-lightgreen"
                       required
+                      autoComplete='off'
                     />
 
                     <span className="absolute right-4 top-4">
@@ -269,7 +264,7 @@ const SignIn: React.FC<AdminSignInProps> = ({ onSignIn, error }) => {
                 <div className="mb-5">
                   <input
                     type="submit"
-                    value="Sign In"
+                    value={loading ? "...":"Sign In"}
                     className="w-full cursor-pointer rounded-lg border border-lightgreen bg-lightgreen p-4 text-white transition hover:bg-opacity-90"
                   />
                 </div>
