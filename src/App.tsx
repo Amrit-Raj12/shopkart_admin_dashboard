@@ -43,7 +43,7 @@ function App() {
           element={
             <AuthMiddleware>
             <>
-              <PageTitle title="eCommerce Dashboard" />
+              <PageTitle title="Shopkart Dashboard" />
               <ECommerce />
             </>
             </AuthMiddleware>
