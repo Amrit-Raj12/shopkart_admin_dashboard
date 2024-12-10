@@ -6,13 +6,14 @@ import SalesRevenueChart from '../../modules/revenueSalesChart';
 import { profit, device_breakdown } from '../../data/dummyData';
 import ProfitChart from '../../modules/ProfitChart';
 import DeviceChart from '../../modules/DeviceChart';
+import { GET_OVERVIEW_URL } from '../../constants/apiUrl';
 
 
 const ECommerce: React.FC = () => {
 
   const token = localStorage.getItem('token') || ''; 
   const { data, error, loading } = useFetchWithToken<any>(
-    'http://localhost:8000/api/dashboard-overview',
+    GET_OVERVIEW_URL,
     token
   );
 

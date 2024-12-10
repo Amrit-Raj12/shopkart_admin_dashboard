@@ -5,6 +5,7 @@ import useFetch from '../hooks/useFetch';
 import useUpdateUser from '../hooks/useUpdateProfile';
 import userThree from '../images/user/user-03.png';
 import { UserProfile } from '../types/userTypes';
+import { GET_PROFILE_URL } from '../constants/apiUrl';
 
 const Settings = () => {
 
@@ -22,7 +23,7 @@ const Settings = () => {
   const {_id} = JSON.parse(user)
   
   const { data, error, isLoading } = useFetch<UserProfile>(
-    `http://localhost:8000/api/users/${_id}`
+    `${GET_PROFILE_URL}/${_id}`
   );
 
   const { updateUser, loading, updateError, success } = useUpdateUser(token);

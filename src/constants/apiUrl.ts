@@ -9,3 +9,9 @@ export const SIGN_IN_URL = `${BASE_URL}/api/users/login`
 // Products
 export const GET_PRODUCTS_URL = `${BASE_URL}/api/admin/products`
 export const GET_SINGLE_PRODUCT_URL = `${BASE_URL}/api/products`
+
+//Overview
+export const GET_OVERVIEW_URL = `${BASE_URL}/api/dashboard-overview`
+
+// Profile
+export const GET_PROFILE_URL = `${BASE_URL}/api/users`

@@ -5,6 +5,7 @@ import CoverOne from '../images/cover/cover-01.png';
 import userSix from '../images/user/user-06.png';
 import { Link } from 'react-router-dom';
 import { UserProfile } from '../types/userTypes';
+import { GET_PROFILE_URL } from '../constants/apiUrl';
 
 const Profile = () => {
 
@@ -13,7 +14,7 @@ const Profile = () => {
   const {_id} = JSON.parse(user)
 
   const { data, error, isLoading } = useFetch<UserProfile>(
-    `http://localhost:8000/api/users/${_id}`
+    `${GET_PROFILE_URL}/${_id}`
   );
 
 
